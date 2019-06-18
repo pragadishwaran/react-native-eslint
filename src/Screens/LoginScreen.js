@@ -6,7 +6,6 @@ import {
     TextInput,
     TouchableHighlight,
     Image,
-    Alert
 } from 'react-native';
 
 export default class LoginScreen extends Component {
@@ -19,7 +18,8 @@ export default class LoginScreen extends Component {
     }
 
     onClickListener = (viewId) => {
-        Alert.alert('Alert', `Button pressed ${viewId}`);
+        console.log('viewID', viewId);
+        this.props.navigation.navigate('Timesheet');
     }
     render() {
         return (
