@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Container, Header, Title, Content,
-  Left, Right, Body, DatePicker, Button, Icon } from 'native-base';
+  Body, DatePicker, Button, Icon } from 'native-base';
 import { Table, Row, Rows } from 'react-native-table-component';
 
 export default class ViewTimeSheet extends Component {

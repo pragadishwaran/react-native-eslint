@@ -7,18 +7,23 @@ import {
     TouchableHighlight,
     Image,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { LoginAction } from '../actions/LoginAction';
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            username: '',
             password: '',
         };
     }
 
-    onClickListener = (viewId) => {
-        console.log('viewID', viewId);
+    onClickListener = () => {
+        console.log('username', this.state.username);
+        console.log('password', this.state.password);
+        const data = { UserName: this.state.username, Password: this.state.password };
+        this.props.LoginAction(data);
         this.props.navigation.navigate('Timesheet');
     }
     render() {
@@ -34,9 +39,8 @@ export default class LoginScreen extends Component {
                     <TextInput
                         style={styles.inputs}
                         placeholder="Username"
-                        keyboardType="email-address"
                         underlineColorAndroid='transparent'
-                        onChangeText={(email) => this.setState({ email })}
+                        onChangeText={(username) => this.setState({ username })}
                     />
                 </View>
 
@@ -53,7 +57,7 @@ export default class LoginScreen extends Component {
 
                 <TouchableHighlight
                     style={[styles.buttonContainer, styles.loginButton]}
-                    onPress={() => this.onClickListener('login')}
+                    onPress={() => this.onClickListener()}
                 >
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableHighlight>
@@ -112,3 +116,13 @@ const styles = StyleSheet.create({
         color: 'white',
     }
 });
+
+const mapStateToProps = state => ({
+    simpleData: state.simple,
+  });
+  
+  const mapDispatchToProps = dispatch => ({
+    LoginAction: (data) => dispatch(LoginAction(data))
+  });
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
