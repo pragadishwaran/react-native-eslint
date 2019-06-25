@@ -1,14 +1,28 @@
-import Api from '../common/Api';
+import { Url, Api } from '../common';
+import { loginSucess,
+         loginFailure, 
+         userInfo, 
+         userId } from '../actionTypes/loginActionType';
 
 export const LoginAction = (data) => dispatch => {
-    console.log('data', data);
-    Api.post('http://192.168.28.162:8880/CESPortal.Web.API/api/login/Login', data).then(response => {
-            console.log('response', response);
-            dispatch({
-                type: 'FIRST_ACTION',
-                payload: response
-               });
-        }).catch((ex) => {
-            console.log('ex', ex);
+    Api.post(Url.loginUrl, data).then(response => {
+        dispatch({
+            type: loginSucess,
+            payload: response
         });
-   };
+        dispatch({
+            type: userInfo,
+            payload: response.userInfo
+        });
+        dispatch({
+            type: userId,
+            payload: response.userInfo.userID
+        });
+        Api.token = response.userInfo.securityToken;
+    }).catch((err) => {
+        dispatch({
+            type: loginFailure,
+            payload: err
+        });
+    });
+};

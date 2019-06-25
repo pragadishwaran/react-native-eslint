@@ -1,11 +1,13 @@
 /* eslint-disable quote-props */
 class Api {
-
+    static token = '';
+    
     static headersWithOutSession() {
         return {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'dataType': 'json'
+            'dataType': 'json',
+            'Authorization': this.token
         };
     }
 
@@ -29,6 +31,6 @@ class Api {
                 throw error;
             });
     }
-    
-  }
-  export default Api;
+
+}
+export default Api;

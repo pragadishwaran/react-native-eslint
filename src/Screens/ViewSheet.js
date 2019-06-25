@@ -24,6 +24,7 @@ export default class ViewTimeSheet extends Component {
       }
   render() {
     const state = this.state;
+    console.log('date', new Date().toISOString());
     return (
       <Container>
         <Header>
