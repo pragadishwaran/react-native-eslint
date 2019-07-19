@@ -24,7 +24,7 @@ class LoginScreen extends Component {
         console.log('password', this.state.password);
         const data = { UserName: this.state.username, Password: this.state.password };
         this.props.LoginAction(data);
-        this.props.navigation.navigate('Timesheet');
+        this.props.navigation.navigate('Leave');
     }
     render() {
         return (

@@ -1,10 +1,11 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { LoginScreen, TimeSheetScreen } from '../Screens';
+import { LoginScreen, TimeSheetScreen, LeaveScreen } from '../Screens';
 
 const AppNavigator = createStackNavigator(
     {
         Login: LoginScreen,
         Timesheet: TimeSheetScreen,
+        Leave: LeaveScreen
     },
     {
         headerMode: 'none',
